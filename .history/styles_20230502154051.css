@@ -12,10 +12,6 @@ body {
     gap: 2rem;
 }
 
-.hidden {
-    display: none;
-}
-
 .header {
     width: 100%;
     background-color: lightgrey;
@@ -59,11 +55,6 @@ button {
 .level {
     width: 15rem;
     font-size: 19px;
-}
-
-
-.level.active {
-    background-color: #4CAF50;
 }
 
 .start {
