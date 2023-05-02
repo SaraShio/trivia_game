@@ -7,7 +7,8 @@ export const getAll = async function () {
  }
 
 export const getQuestions = async function (category, difficulty) {
-      var url = 'https://opentdb.com/api.php?';
+   var url = `https://opentdb.com/api.php?amount=10&category=${category}&difficulty=${difficulty.toLowerCase()}&type=multiple`;
+
       if (category) {
          url += '&category=' + category;
       }

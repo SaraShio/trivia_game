@@ -8,7 +8,7 @@ var displayInDropdown = function (data) {
     if (Object.keys(data).length > 0) {
         var html = "<option></option>";
         for (let res of data.trivia_categories) {
-            html += `<option value=${res.id}>${res.name}</option>`;
+            html += `<option>${res.name}</option>`;
         };
         document.querySelector('#getCategories').innerHTML = html;
     }
@@ -37,7 +37,7 @@ startButton.addEventListener('click', (e) => {
         alert("Please select a category");
     } else {
         getQuestions(category, difficulty).then(data => {
-            console.log(data);
+            console.log()
         });
     }
 });

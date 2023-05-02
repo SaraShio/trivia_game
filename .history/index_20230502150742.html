@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Trivia</title>
+</head>
+
+<script type="module" src="./src/main.js"></script>
+<link rel="stylesheet" href="styles.css">
+
+<body>
+    <div class="container">
+        <div id="intro">
+            <div class="header">
+                <h1>Let's Get Started!</h1>
+            </div>
+            <div class="topic">
+                <label for="categories">1. Choose Your Topic:</label>
+                <select name="categories" id="getCategories">
+                </select>
+            </div>
+            <div class="difficulty">
+                <h3>2. Choose Your Difficulty</h3>
+                <button class="level active">Easy</button>
+                <button class="level">Medium</button>
+                <button class="level">Hard</button>
+            </div>
+            <button class="start">Start Quiz!</button>
+        </div>
+
+        <div id="quiz">
+            <div class="header">
+                <h1>Trivia</h1>
+            </div>
+            <div class="question">
+                <h2>Question</h2>
+                <div class="options">
+                    <button class="option"></button>
+                    <button class="option"></button>
+                    <button class="option"></button>
+                    <button class="option"></button>
+                </div>
+            </div>
+            <div class="progress">
+                <div class="progress-bar"></div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

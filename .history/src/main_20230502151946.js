@@ -8,7 +8,7 @@ var displayInDropdown = function (data) {
     if (Object.keys(data).length > 0) {
         var html = "<option></option>";
         for (let res of data.trivia_categories) {
-            html += `<option value=${res.id}>${res.name}</option>`;
+            html += `<option value="">${res.name}</option>`;
         };
         document.querySelector('#getCategories').innerHTML = html;
     }

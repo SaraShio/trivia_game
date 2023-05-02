@@ -12,10 +12,6 @@ body {
     gap: 2rem;
 }
 
-.hidden {
-    display: none;
-}
-
 .header {
     width: 100%;
     background-color: lightgrey;

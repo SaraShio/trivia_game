@@ -7,7 +7,7 @@ export const getAll = async function () {
  }
 
 export const getQuestions = async function (category, difficulty) {
-      var url = 'https://opentdb.com/api.php?';
+      var url = 'https://opentdb.com/api.php?amount=10';
       if (category) {
          url += '&category=' + category;
       }
@@ -17,4 +17,4 @@ export const getQuestions = async function (category, difficulty) {
       const data = await fetch(url)
          .then(res => res.json());
       return data;
-   };
+   }

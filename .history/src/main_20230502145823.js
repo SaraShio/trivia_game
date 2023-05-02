@@ -1,4 +1,4 @@
-import { getAll, getQuestions } from './categories.js'
+import { getAll } from './categories.js'
 
 getAll().then(data => {
     displayInDropdown(data);
@@ -8,14 +8,14 @@ var displayInDropdown = function (data) {
     if (Object.keys(data).length > 0) {
         var html = "<option></option>";
         for (let res of data.trivia_categories) {
-            html += `<option value=${res.id}>${res.name}</option>`;
+            html += `<option>${res.name}</option>`;
         };
         document.querySelector('#getCategories').innerHTML = html;
     }
 }
 
 var difficulty = "Easy";
-var buttons = document.querySelectorAll(".level");
+var buttons = document.querySelectorAll("button");
 
 buttons.forEach((button) => {
     button.addEventListener('click', (e) => {
@@ -27,17 +27,4 @@ buttons.forEach((button) => {
         button.classList.add('active');
         console.log(difficulty);
     });
-});
-
-var startButton = document.querySelector('.start');
-startButton.addEventListener('click', (e) => {
-    e.preventDefault();
-    var category = document.querySelector('#getCategories').value;
-    if (category === "") {
-        alert("Please select a category");
-    } else {
-        getQuestions(category, difficulty).then(data => {
-            console.log(data);
-        });
-    }
 });
