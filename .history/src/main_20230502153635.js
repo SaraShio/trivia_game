@@ -1,4 +1,4 @@
-import { getCategories, getQuestions } from './process-data.js'
+import { getCategories } from './process-data.js'
 
 getCategories().then(data => {
     displayInDropdown(data);

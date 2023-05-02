@@ -61,11 +61,6 @@ button {
     font-size: 19px;
 }
 
-
-.level.active {
-    background-color: #4CAF50;
-}
-
 .start {
     font-size: 16px;
     width: 12rem;
