@@ -9,15 +9,17 @@ var displayInDropdown = function (data) {
         var html = "<option></option>";
         data.trivia_categories.sort((a, b) => a.name.localeCompare(b.name));
         for (let res of data.trivia_categories) {
-            html += `<option>${res.name}</option>`;
+            html += `<option value="${res.id}">${res.name}</option>`;
         };
         document.querySelector('#getCategories').innerHTML = html;
     }
 }
 
-
 var difficulty = "Easy";
 var buttons = document.querySelectorAll(".level");
+var introContainer = document.querySelector('#intro');
+var quizContainer = document.querySelector('#quiz')
+var questionsContainer = document.querySelector('#questions');
 
 buttons.forEach((button) => {
     button.addEventListener('click', (e) => {
@@ -38,8 +40,26 @@ startButton.addEventListener('click', (e) => {
     if (category === "") {
         alert("Please select a category");
     } else {
-        getQuestions(category, difficulty).then(data => {
+        getQuestions(category, difficulty.toLowerCase()).then(data => {
             console.log(data);
+            var html = data.map((item, index) => {
+                return `
+                    <div>
+                        <h3>${index + 1}: ${item.question}</h3>
+                        <fieldset class="question">
+                            ${item.options.map((option) => (`
+                                <div>
+                                    <input type="radio" id="${option}" value="${option}" name="${item.question}">
+                                    <label for="${option}">${option}</label>
+                                </div>
+                            `)).join('')}
+                        </fieldset>
+                    </div>
+                `
+            });
+            questionsContainer.innerHTML = html;
+            introContainer.classList.add('hidden');
+            quizContainer.classList.remove('hidden');
         });
     }
 });
