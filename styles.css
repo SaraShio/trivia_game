@@ -85,6 +85,7 @@ button {
     /* Style this */
 }
 
+
 /* Footer section */
 .footer {
     display: flex;
@@ -135,4 +136,10 @@ ul {
 
 .link:hover {
     color: blueviolet;
+
+.timer {
+    position: absolute;
+    top: 0;
+    left: 0;
+
 }
