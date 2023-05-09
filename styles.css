@@ -3,6 +3,11 @@
 body {
     margin: 0 auto;
     font-family: 'Be Vietnam Pro', sans-serif;
+    background-image: linear-gradient(to bottom right, #1AFFD5, #007FFF);
+}
+
+#grad {
+    background-image: linear-gradient(to bottom right, #1AFFD5, #007FFF);
 }
 
 .container {
@@ -18,7 +23,7 @@ body {
 
 .header {
     width: 100%;
-    background-color: lightgrey;
+    background-image: linear-gradient(to bottom right, #729efd, #8a64d6);
     display: flex;
     justify-content: center;
 }
@@ -32,7 +37,7 @@ body {
     text-align: center;
     width: 80%;
     padding: 2rem;
-    background-color: lightgrey;
+    background-color: white;
     border-radius: 10px;
 }
 
@@ -40,6 +45,10 @@ label {
     font-size: 19px;
     font-weight: 700;
     padding-bottom: 1rem;
+}
+
+#title {
+    color: white;
 }
 
 #getCategories {
@@ -54,7 +63,7 @@ button {
     border-radius: 10px;
     border: none;
     color: white;
-    background-color: darkgrey;
+    background-color: #8a64d6;
 }
 
 .level {
@@ -64,7 +73,7 @@ button {
 
 
 .level.active {
-    background-color: #4CAF50;
+    background-color: #729efd;
 }
 
 .start {
@@ -76,8 +85,61 @@ button {
     /* Style this */
 }
 
+
+/* Footer section */
+.footer {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 200px;
+    background-color: black;
+    color: white;
+    padding-left: 50px;
+    align-content: space-between;
+}
+
+.footerSection {
+    display: flex;
+    flex-direction: column;
+    padding-left: 90px;
+    align-self: center;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.developerInfo {
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 30px;
+}
+
+.developers {
+    margin-left: 40px;
+    padding-top: 20px;
+}
+
+.companyInformation {
+    margin-left: 40px;
+    padding-top: 40px;
+}
+
+.companyInfo {
+    padding-bottom: 30px;
+}
+
+.link {
+    text-decoration: none;
+    color: white;
+}
+
+.link:hover {
+    color: blueviolet;
+
 .timer {
     position: absolute;
     top: 0;
     left: 0;
+
 }
