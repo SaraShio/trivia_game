@@ -88,6 +88,7 @@ var correctAnswers = {};
 var submitButton = document.querySelector('#submitQuiz');
 submitButton.addEventListener('click', (e) => {
     e.preventDefault();
+    timer.remove();
     var questions = document.querySelectorAll('.question');
     var score = 0;
     var incorrectQuestions = [];
