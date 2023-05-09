@@ -21,6 +21,8 @@ var introContainer = document.querySelector('#intro');
 var quizContainer = document.querySelector('#quiz')
 var questionsContainer = document.querySelector('#questions');
 
+
+
 buttons.forEach((button) => {
     button.addEventListener('click', (e) => {
         e.preventDefault();
@@ -45,7 +47,7 @@ startButton.addEventListener('click', (e) => {
             var html = data.map((item, index) => {
                 return `
                     <div>
-                        <h3>${index + 1}: ${item.question}</h3>
+                        <a href="#" class="collapsible">${index + 1}: ${item.question}</a>
                         <fieldset class="question">
                             ${item.options.map((option) => (`
                                 <div>
@@ -60,6 +62,25 @@ startButton.addEventListener('click', (e) => {
             questionsContainer.innerHTML = html;
             introContainer.classList.add('hidden');
             quizContainer.classList.remove('hidden');
+            collapsibleContent();
         });
     }
 });
+
+
+function collapsibleContent() {
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+
+    for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+}
