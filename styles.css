@@ -23,6 +23,7 @@ body {
     justify-content: center;
 }
 
+.name,
 .topic,
 .difficulty {
     display: flex;
