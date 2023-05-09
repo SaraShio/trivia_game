@@ -19,7 +19,7 @@ export const getQuestions = async function (category, difficulty) {
   try {
     const response = await fetch(url);
     const data = await response.json();
-    const questions = data.results.map(result => {
+    const questions = data.results.map((result) => {
       return {
         question: result.question,
         options: [...result.incorrect_answers, result.correct_answer].sort()
