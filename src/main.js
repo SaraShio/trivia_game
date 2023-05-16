@@ -20,8 +20,7 @@ var buttons = document.querySelectorAll(".level");
 var introContainer = document.querySelector('#intro');
 var quizContainer = document.querySelector('#quiz')
 var questionsContainer = document.querySelector('#questions');
-
-
+var correctAnswers = {};
 
 buttons.forEach((button) => {
     button.addEventListener('click', (e) => {
@@ -35,6 +34,7 @@ buttons.forEach((button) => {
     });
 });
 
+var interval;
 var timer = document.createElement('div');
 timer.classList.add('timer');
 document.body.appendChild(timer);
@@ -46,13 +46,12 @@ startButton.addEventListener('click', (e) => {
     if (category === "") {
         alert("Please select a category");
     } else {
-        correctAnswers = {};
         getQuestions(category, difficulty.toLowerCase()).then(data => {
             console.log(data);
             var html = data.map((item, index) => {
-                correctAnswers[`question${index}`] = item.correct_answer;
+                correctAnswers[`question${index}`] = item.correctAnswer; // modified line
                 return `
-                
+
                   <div>
                         <a href="#" class="collapsible">${index + 1}: ${item.question}</a>
                         <fieldset class="question">
@@ -79,7 +78,7 @@ startButton.addEventListener('click', (e) => {
 
             const time = 300;
             let currentTime = time;
-            const interval = setInterval(() => {
+            interval = setInterval(() => {
                 currentTime--;
                 if (currentTime < 0) {
                     clearInterval(interval);
@@ -94,45 +93,35 @@ startButton.addEventListener('click', (e) => {
     }
 });
 
-var correctAnswers = {};
 var submitButton = document.querySelector('#submitQuiz');
-submitButton.addEventListener('click', (e) => {
+submitButton.addEventListener('click', async (e) => {
     e.preventDefault();
-    var questions = document.querySelectorAll('.question');
-    var score = 0;
-    var incorrectQuestions = [];
-    questions.forEach(question => {
-        var correctAnswer = question.querySelector(`input[value='${correctAnswers[question.id]}']`);
-        var selectedAnswer = question.querySelector('input:checked');
-        if (selectedAnswer && selectedAnswer.value === correctAnswer?.value) {
+    clearInterval(interval);
+    timer.remove();
+    const answers = document.querySelectorAll('input[type="radio"]:checked');
+    let score = 0;
+    let html = '<div><h2>Results</h2>';
+    const category = document.querySelector('#getCategories').value;
+    const data = await getQuestions(category, difficulty.toLowerCase());
+    for (let i = 0; i < answers.length; i++) {
+        const question = answers[i].name;
+        const selectedAnswer = answers[i].value;
+        const correctAnswer = correctAnswers[question];
+        const isCorrect = selectedAnswer === correctAnswer;
+        html += `
+        <div style="display: flex; flex-direction: column">
+            <h3>Question ${i + 1}: ${data[i].question}</h3>
+            <p>${isCorrect ? 'Correct' : 'Incorrect'}: ${selectedAnswer} ${isCorrect ? '' : `<br />Correct answer: ${correctAnswer}`}</p>
+        </div></ul>
+    `;
+        if (isCorrect) {
             score++;
-        } else {
-            incorrectQuestions.push({
-                question: question.id,
-                correct_answer: correctAnswers[question.id],
-                selected_answer: selectedAnswer ? selectedAnswer.value : 'no answer selected'
-            });
         }
-    });
-    var html = `<div> <h3>Score: ${score}/${questions.length}</h3> </div>`;
-    if (incorrectQuestions.length > 0) {
-        html += `<div> <h3>Answers:</h3>`;
-        incorrectQuestions.forEach(question => {
-            html += `<div>
-                <h4>${question.question}</h4>
-                <p>Your answer: ${question.selected_answer}</p>
-                <p>Correct answer: ${question.correct_answer}</p>
-            </div>`;
-
-        });
-        html += `</div>`;
     }
+    html += `<h3>Score: ${score} / ${answers.length}</h3></div>`;
     quizContainer.innerHTML = html;
-
     postQuizResult(score);
-
 });
-
 
 function collapsibleContent() {
     var coll = document.getElementsByClassName("collapsible");
@@ -182,5 +171,4 @@ async function postQuizResult(score) {
       .catch((error) => {
         console.error("Error posting quiz result:", error);
       });
-  }
-
+}

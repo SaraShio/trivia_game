@@ -22,7 +22,8 @@ export const getQuestions = async function (category, difficulty) {
     const questions = data.results.map((result) => {
       return {
         question: result.question,
-        options: [...result.incorrect_answers, result.correct_answer].sort()
+        options: [...result.incorrect_answers, result.correct_answer].sort(),
+        correctAnswer: result.correct_answer
       }
     });
     return questions;
@@ -30,4 +31,3 @@ export const getQuestions = async function (category, difficulty) {
     console.error(error);
   }
 }
-
