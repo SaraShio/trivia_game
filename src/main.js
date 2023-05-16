@@ -43,6 +43,7 @@ document.body.appendChild(timer);
 var startButton = document.querySelector('.start');
 startButton.addEventListener('click', (e) => {
     e.preventDefault();
+    window.scrollTo(0, 0);
     var category = document.querySelector('#getCategories').value;
     if (category === "") {
         alert("Please select a category");
@@ -50,7 +51,7 @@ startButton.addEventListener('click', (e) => {
         getQuestions(category, difficulty.toLowerCase()).then(data => {
             console.log(data);
             var html = data.map((item, index) => {
-                correctAnswers[`question${index}`] = item.correctAnswer; // modified line
+                correctAnswers[`question${index}`] = item.correctAnswer;
                 return `
 
                   <div>
@@ -69,7 +70,7 @@ startButton.addEventListener('click', (e) => {
                         </fieldset>
                     </div>
                 `
-            });
+            }).join('');
             questionsContainer.innerHTML = html;
             introContainer.classList.add('hidden');
             quizContainer.classList.remove('hidden');
@@ -100,6 +101,7 @@ submitButton.addEventListener('click', async (e) => {
     e.preventDefault();
     clearInterval(interval);
     timer.remove();
+    window.scrollTo(0, 0);
     const answers = document.querySelectorAll('input[type="radio"]:checked');
     let score = 0;
     let html = '<div><h2>Results</h2>';
