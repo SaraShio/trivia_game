@@ -18,7 +18,8 @@ var displayInDropdown = function (data) {
 var difficulty = "Easy";
 var buttons = document.querySelectorAll(".level");
 var introContainer = document.querySelector('#intro');
-var quizContainer = document.querySelector('#quiz')
+var quizContainer = document.querySelector('#quiz');
+var resultsContainer = document.querySelector('#results');
 var questionsContainer = document.querySelector('#questions');
 var correctAnswers = {};
 
@@ -72,6 +73,7 @@ startButton.addEventListener('click', (e) => {
             questionsContainer.innerHTML = html;
             introContainer.classList.add('hidden');
             quizContainer.classList.remove('hidden');
+            resultsContainer.classList.remove('hidden');
 
             collapsibleContent();
 
@@ -154,6 +156,13 @@ async function postQuizResult(score) {
       .catch((error) => {
         console.error("Error posting quiz result:", error);
       });
+
+      var retrybutton = document.querySelector('#retryQuiz');
+      retrybutton.addEventListener('click',async (e) => {
+        e.preventDefault();
+
+      })
+
 }
 
 function collapsibleContent() {
