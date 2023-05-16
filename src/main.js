@@ -56,7 +56,7 @@ startButton.addEventListener('click', (e) => {
                         <a href="#" class="collapsible">${index + 1}: ${item.question}</a>
                         <fieldset class="question">
 
-                        <h3>${index + 1}: ${item.question}</h3>
+                       
                         <fieldset class="question" id="question${index}">
 
                             ${item.options.map((option) => (`
@@ -123,23 +123,6 @@ submitButton.addEventListener('click', async (e) => {
     postQuizResult(score);
 });
 
-function collapsibleContent() {
-    var coll = document.getElementsByClassName("collapsible");
-    var i;
-
-    for (i = 0; i < coll.length; i++) {
-  coll[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var content = this.nextElementSibling;
-    if (content.style.display === "block") {
-      content.style.display = "none";
-    } else {
-      content.style.display = "block";
-    }
-  });
-}
-}
-
 async function postQuizResult(score) {
     const name = document.getElementById("name").value;
     const webAppId = "4946a047-34d7-468a-af10-320d75236f06";
@@ -172,3 +155,21 @@ async function postQuizResult(score) {
         console.error("Error posting quiz result:", error);
       });
 }
+
+function collapsibleContent() {
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+
+    for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+}
+

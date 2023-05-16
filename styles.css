@@ -82,7 +82,21 @@ button {
 }
 
 .question {
-    /* Style this */
+    background-color: white;
+    border-style: none;
+    border-radius: 10px;
+    padding-top: 20px;
+}
+
+.collapsible {
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#tryAgain {
+    text-decoration: none;
+    color: white;
 }
 
 
@@ -136,10 +150,10 @@ ul {
 
 .link:hover {
     color: blueviolet;
+}
 
 .timer {
     position: absolute;
     top: 0;
-    left: 0;
-
+    left: 40px;
 }
